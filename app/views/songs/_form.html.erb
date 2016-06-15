@@ -1,29 +1,27 @@
 <%= form_for(@song) do |f| %>
   <% if @song.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@song.errors.count, "error") %> prohibited this song from being saved:</h2>
-
-      <ul>
-      <% @song.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <div class="alert alert-danger" role="alert">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      <span class="sr-only">Error:</span>
+        <% @song.errors.full_messages.each do |message| %>
+          <%= message %><br>
+        <% end %>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :artist_id %><br>
-    <%= f.text_field :artist_id %>
-  </div>
-  <div class="field">
-    <%= f.label :lyric %><br>
-    <%= f.text_area :lyric %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<div class="form-group">
+  <%= f.label :title %>
+  <%= f.text_field :title, class: "form-control" %>
+</div>
+<div class="form-group">
+  <%= f.label :artist_id %>
+  <% artists =  @artists.map { |artist| [artist.name, artist.id] } %>
+  <%= f.select :artist_id, artists, {}, class: "form-control" %>
+</div>
+<div class="form-group">
+  <%= f.label :lyric %>
+  <%= f.text_area :lyric, class: "form-control", rows: 5 %>
+</div>
+<%= f.submit "SAVE", class: "form-control btn-primary" %>
+
 <% end %>

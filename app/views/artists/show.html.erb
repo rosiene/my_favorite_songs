@@ -1,14 +1,31 @@
 <p id="notice"><%= notice %></p>
+<div class="center">
+  <% if @artist.picture.present? %>
+    <%= image_tag @artist.picture %>
+  <% else %>
+    <%= image_tag 'artist.jpg' %>
+  <% end %>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @artist.name %>
-</p>
+<h2><%= @artist.name %></h2>
 
-<p>
-  <strong>Picture:</strong>
-  <%= @artist.picture %>
-</p>
+<center>
+  <%= link_to 'Edit', edit_artist_path(@artist) %> |
+  <%= link_to "Delete", artist_path( @artist ), method: :delete, data: { confirm: "Are you sure?" } %> | 
+  <%= link_to 'Back', artists_path %>
+</center>
 
-<%= link_to 'Edit', edit_artist_path(@artist) %> |
-<%= link_to 'Back', artists_path %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Songs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @artist.songs.each do |song| %>
+      <tr>
+        <td><%= link_to song.title, song %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

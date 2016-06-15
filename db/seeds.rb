@@ -112,7 +112,7 @@ Satisfy my soul, satisfy my soul. [fadeout]
 
 Song.create(
   title: "Buffalo Soldier",
-  artist: bob,
+  artist: coldplay,
   lyric: %{
 Buffalo soldier, dreadlock rasta:
 There was a buffalo soldier in the heart of america,

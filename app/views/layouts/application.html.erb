@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MyFavoriteSongs</title>
+  <title>My Favorite Songs</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+  <div class="container">
+    <header>
+      <%= render "layouts/navbar" %>
+      <h1><%= link_to 'My Favorite Songs', '/' %></h1>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>Developed by <%= link_to 'Rosiene Dilly', 'https://github.com/rosiene' %></footer
+  </div>
 </body>
 </html>
