@@ -1,19 +1,20 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @song.title %>
-</p>
-
-<p>
-  <strong>Artist:</strong>
-  <%= @song.artist %>
-</p>
-
-<p>
-  <strong>Lyric:</strong>
-  <%= @song.lyric %>
-</p>
-
-<%= link_to 'Edit', edit_song_path(@song) %> |
-<%= link_to 'Back', songs_path %>
+<h2><%= @song.title %></h2>
+<center>
+  <p>
+    <%= link_to 'Edit', edit_song_path(@song) %> |
+    <%= link_to "Delete", song_path( @song ), method: :delete, data: { confirm: "Are you sure?" } %> |
+    <%= link_to 'Back', songs_path %>
+  </p>
+</center>
+<div class="row">
+  <div class="col-xs-8 col-md-8">
+    <%= simple_format @song.lyric %>
+  </div>
+  <div class="col-xs-4 col-md-4">
+    <div class="thumbnail">
+      <%= link_to image_tag(@song.artist.picture), @song.artist %>
+      <center><%= link_to @song.artist.name, @song.artist %></center>
+    </div>
+  </div>
+</div>

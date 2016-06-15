@@ -15,10 +15,12 @@ class SongsController < ApplicationController
   # GET /songs/new
   def new
     @song = Song.new
+    @artists = Artist.all.order :name
   end
 
   # GET /songs/1/edit
   def edit
+    @artists = Artist.all.order :name
   end
 
   # POST /songs
@@ -31,6 +33,7 @@ class SongsController < ApplicationController
         format.html { redirect_to @song, notice: 'Song was successfully created.' }
         format.json { render :show, status: :created, location: @song }
       else
+        @artists = Artist.all.order :name
         format.html { render :new }
         format.json { render json: @song.errors, status: :unprocessable_entity }
       end
@@ -45,6 +48,7 @@ class SongsController < ApplicationController
         format.html { redirect_to @song, notice: 'Song was successfully updated.' }
         format.json { render :show, status: :ok, location: @song }
       else
+        @artists = Artist.all.order :name
         format.html { render :edit }
         format.json { render json: @song.errors, status: :unprocessable_entity }
       end
